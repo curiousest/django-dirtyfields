@@ -99,7 +99,7 @@ def test_decimal_field_correctly_managed():
     tm.decimal_field = 2.0
     assert not tm.is_dirty()
 
-    tm.decimal_field = u"2.00"
+    tm.decimal_field = "2.00"
     assert not tm.is_dirty()
 
 

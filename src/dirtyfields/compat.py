@@ -23,12 +23,12 @@ def is_deferred(model, field):
 def save_specific_fields(instance, fields_list):
 
     if django.VERSION >= (1, 5):
-        instance.save(update_fields=fields_list.keys())
+        instance.save(update_fields=list(fields_list.keys()))
     else:
         # dirtyfields is by default returning dirty fields with their old value
         # We should pass the new value(s) to update the database
         new_fields_list = {field_name: getattr(instance, field_name)
-                           for field_name, field_value in fields_list.items()}
+                           for field_name, field_value in list(fields_list.items())}
 
         # dirtyfield is based on post_save signal to save last database value in memory.
         # As we need to manually launch post_save signal, we also launch pre_save

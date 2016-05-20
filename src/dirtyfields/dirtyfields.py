@@ -60,7 +60,7 @@ class DirtyFieldsMixin(object):
         new_state = self._as_dict(check_relationship)
         all_modify_field = {}
 
-        for key, value in new_state.items():
+        for key, value in list(new_state.items()):
             original_value = self._original_state[key]
 
             is_identical = self.compare_function[0](value, original_value, **self.compare_function[1])
